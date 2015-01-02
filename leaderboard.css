@@ -1,0 +1,17 @@
+/* CSS declarations go here */
+.selected{
+    background-color: #ccc;
+}
+
+.player span {
+  color: rgb(161, 14, 14);
+  font-size: 18px;
+}
+
+ul {
+  list-style: none;
+}
+
+ul li { 
+  padding: .8em;
+}

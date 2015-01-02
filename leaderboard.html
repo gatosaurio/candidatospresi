@@ -1,0 +1,29 @@
+<head>
+    <title>Encuesta</title>
+</head>
+<body>
+    <div class="container">
+      <h1>Qué candidato presidencial te parece "menos malo"?</h1>
+        {{> leaderboard}}
+    </div>  
+</body>
+
+<template name="leaderboard">
+
+  <div class="span7">
+    <ul>
+        {{#each player}}
+          <h5><li class="player {{selectedClass}}">{{name}}: <span>{{score}}</span></li></h5>
+        {{/each}}
+          <li>
+            <input type="button" class="increment btn btn-large btn-success" value="Votar">
+            <!--<input type="button" class="decrement btn" value="Take 1 Points">-->
+          </li>
+    </ul>
+  </div>
+  <div class="span5">
+    {{#if showSelectedPlayer}}
+      <h3>Candidato elegido: {{showSelectedPlayer.name}}</h3>
+    {{/if}}
+  </div>
+</template>
