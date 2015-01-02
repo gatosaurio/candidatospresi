@@ -17,9 +17,13 @@
           <h5><li class="player {{selectedClass}}">{{name}}: <span>{{score}}</span></li></h5>
         {{/each}}
           <li>
-          	
-	            <input type="button" class="increment btn btn-large btn-success {{disableVote}}" value="Votar">
-	            <input type="button" class="decrement btn btn-large btn-danger {{enableVote}}" value="Quitar Voto">
+          	  {{#if currentUser}}
+                <input type="button" class="increment btn btn-large btn-success {{disableVote}}" value="Votar">
+	              <!--<input type="button" class="decrement btn btn-large btn-danger {{enableVote}}" value="Quitar Voto">-->
+              {{else}}
+                <p class="text-warning">Debes estar logueado para votar</p>
+              {{/if}}
+	            
             
           </li>
     </ul>
@@ -34,5 +38,6 @@
 <template name="userScore">
   <h4>Votos restantes:</h4>
 	<h3>{{ counter }}</h3>
+  {{> loginButtons}}
 
 </template>
