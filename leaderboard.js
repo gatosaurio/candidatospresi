@@ -1,9 +1,10 @@
 
 // Create a MongoDB Collection
 PlayersList = new Mongo.Collection('players');
-
 // Code that only runs on the client (within the web browser)
 if(Meteor.isClient){
+
+  Session.setDefault("counter", 5);
 
   // Helper functions execute code within templates
   Template.leaderboard.helpers({
@@ -38,6 +39,20 @@ if(Meteor.isClient){
       // Retrieve a single document from the collection
       return PlayersList.findOne(selectedPlayer)
 
+    },
+    'disableVote': function(){
+      var counter = Session.get('counter');
+
+      if(counter == 0){
+        return "disabled"
+      }
+    },
+    'enableVote': function(){
+      var counter = Session.get('counter');
+
+      if(counter >= 5){
+        return "disabled"
+      }
     }
   });
 
@@ -53,6 +68,8 @@ if(Meteor.isClient){
 
       },
       'click .increment': function(){
+        
+        Session.set("counter", Session.get("counter") - 1);        
 
         // Get the ID of the player that's been clicked
         var selectedPlayer = Session.get('selectedPlayer');
@@ -62,6 +79,8 @@ if(Meteor.isClient){
 
       },
       'click .decrement': function(){
+        
+        Session.set("counter", Session.get("counter") + 1);
 
         // Get the ID of the player that's been clicked
         var selectedPlayer = Session.get('selectedPlayer');
@@ -70,6 +89,12 @@ if(Meteor.isClient){
         PlayersList.update(selectedPlayer, {$inc: {score: -1} });
 
       }
+  });
+
+  Template.userScore.helpers({
+    counter: function(){
+      return Session.get("counter");
+    }
   });
 
 }

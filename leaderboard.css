@@ -3,6 +3,11 @@
     background-color: #ccc;
 }
 
+.disabled {
+	display: none;
+}
+
+
 .player span {
   color: rgb(161, 14, 14);
   font-size: 18px;

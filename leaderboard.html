@@ -5,6 +5,7 @@
     <div class="container">
       <h1>Qué candidato presidencial te parece "menos malo"?</h1>
         {{> leaderboard}}
+        {{> userScore }}
     </div>  
 </body>
 
@@ -16,8 +17,10 @@
           <h5><li class="player {{selectedClass}}">{{name}}: <span>{{score}}</span></li></h5>
         {{/each}}
           <li>
-            <input type="button" class="increment btn btn-large btn-success" value="Votar">
-            <!--<input type="button" class="decrement btn" value="Take 1 Points">-->
+          	
+	            <input type="button" class="increment btn btn-large btn-success {{disableVote}}" value="Votar">
+	            <input type="button" class="decrement btn btn-large btn-danger {{enableVote}}" value="Quitar Voto">
+            
           </li>
     </ul>
   </div>
@@ -26,4 +29,10 @@
       <h3>Candidato elegido: {{showSelectedPlayer.name}}</h3>
     {{/if}}
   </div>
+</template>
+
+<template name="userScore">
+  <h4>Votos restantes:</h4>
+	<h3>{{ counter }}</h3>
+
 </template>
