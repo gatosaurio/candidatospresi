@@ -5,6 +5,8 @@ PlayersList = new Mongo.Collection('players');
 if(Meteor.isClient){
 
   Session.setDefault("counter", 5);
+  Session.makePersistent("counter");
+  
 
   // Helper functions execute code within templates
   Template.leaderboard.helpers({
@@ -43,14 +45,14 @@ if(Meteor.isClient){
     'disableVote': function(){
       var counter = Session.get('counter');
 
-      if(counter == 0){
+      if(counter == 1){
         return "disabled"
       }
     },
     'enableVote': function(){
       var counter = Session.get('counter');
 
-      if(counter >= 5){
+      if(counter >= 3 ){
         return "disabled"
       }
     }
